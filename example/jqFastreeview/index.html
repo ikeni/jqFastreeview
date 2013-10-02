@@ -1,0 +1,66 @@
+<html>
+	<head>
+        <title>Example of jqFastreeview</title>
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/jquery.jqFastreeview.src.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/jqFastreeview.css"/>
+		<script type="text/javascript">
+		$().ready(function() { 
+           $('#treeview').fastreeview({
+                initialShow:true
+           }); 
+           $('#treeview-openID').fastreeview({
+                initialShow:false,
+                openId:["id41"]
+           }); 
+        });
+		</script>
+		
+	</head>
+	
+	<body>
+        <h1>Treeview with ul / li</h1>
+        <ul id="treeview">
+            <li>
+                <a href="http://www.google.fr" target="_blank">Menu 1</a>
+                <ul>
+                    <li><a href="http://www.google.fr" target="_blank">Sous menu 1.1</a></li>
+                    <li><a>Sous menu 1.2</a></li>
+                    <li><a>Sous menu 1.3</a></li>
+                </ul>
+            </li>
+            <li><a>Menu 2</a></li>
+            <li><a>Menu 3</a></li>
+            <li><a>Menu 4</a>
+                <ul>
+                    <li><a>Sous menu 4.1</a></li>
+                    <li><a>Sous menu 4.2</a></li>
+                    <li><a>Sous menu 4.3</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+        
+        <h1>Treeview with ul / li with elements open</h1>
+        <ul id="treeview-openID">
+            <li id="id1">
+                <a href="http://www.google.fr" target="_blank">Menu 1</a>
+                <ul>
+                    <li id="id11"><a href="http://www.google.fr" target="_blank">Sous menu 1.1</a></li>
+                    <li id="id12"><a>Sous menu 1.2</a></li>
+                    <li id="id13"><a>Sous menu 1.3</a></li>
+                </ul>
+            </li>
+            <li id="id2"><a>Menu 2</a></li>
+            <li id="id3"><a>Menu 3</a></li>
+            <li id="id4"><a>Menu 4</a>
+                <ul>
+                    <li id="id41"><a>Sous menu 4.1</a></li>
+                    <li id="id42"><a>Sous menu 4.2</a></li>
+                    <li id="id43"><a>Sous menu 4.3</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+    </body>
+</html>
