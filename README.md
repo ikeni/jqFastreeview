@@ -3,7 +3,7 @@ jqFastreeview
 
 ### Informations ###
 Version 0.1.
-Ce plugin a pour vocations à mettre en place rapidement et simplement une arborescence à partir d'une suite de balise '<ul> et <li>'.
+Ce plugin a pour vocations à mettre en place rapidement et simplement une arborescence à partir d'une suite de balise ```<ul>``` et ```<li>'```.
 Crée à partir de jQuery 1.9.1.
 
 ## Dépendance ##
@@ -17,7 +17,7 @@ Crée à partir de jQuery 1.9.1.
 
 
 ## English ##
-Jquery plugin for make a fast and simple treeview with <ul> et <li>.
+Jquery plugin for make a fast and simple treeview with ```<ul>``` and ```<li>```.
 
 ## Dependency ##
 - [x] jQuery 1.9.1
