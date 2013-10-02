@@ -9,12 +9,11 @@
     $.extend({
         fastreeview : new function (options) {
             var ft = this;
-            ft.version = "0.0.1";
+            ft.version = "0.1";
             ft.defaults = {
                 cssClass : "fastreeview",
-                cssClassClose : "expandable",
-                cssClassOpen : "collapsable",
-                initialShow : false
+                initialShow : false,
+                openId:[]
             };
             ft.options = {};
             
@@ -23,11 +22,22 @@
                 var $this = $(jqElm);
                 if ($this.children('ul').is(':visible')) {
                     $this.children('ul').toggle(false);
-                    $this.removeClass(options.cssClassOpen).addClass(options.cssClassClose);
+                    $this.removeClass(CLASSES.collapsable).addClass(CLASSES.expandable);
                 } else {
                     $this.children('ul').toggle(true);
-                    $this.removeClass(options.cssClassClose).addClass(options.cssClassOpen);
+                    $this.removeClass(CLASSES.expandable).addClass(CLASSES.collapsable);
                 }
+            }
+            
+            function findChildrenId(jqParentElm, options) {
+                var $this = $(jqParentElm);
+                var obj = jqParentElm;
+                for(var i=0;i<options.openId.length;i++) {
+                    if($this.has('#'+options.openId[i]).length) {
+                       return true;
+                    }
+                }
+                return false;
             }
             
             function classTreeview(jqParentElm, options) {
@@ -36,24 +46,31 @@
                 var $kids = $this.children('li');
                 
                 $kids.each(function (index) {
-                    //Déclaration des variables
+                    //Declare variable
                     var $thisKids = $(this);
                     var objKids = this;
-                    //Ajout classe css derniers éléments 
+                    //Add css class to last element
                     if (index === $kids.length - 1) {
-                        $thisKids.addClass('last');
+                        $thisKids.addClass(CLASSES.last);
                     }
                     if ($thisKids.has('ul').length) {
                         //recusif
                         classTreeview($thisKids.children('ul'), options);
-                        $thisKids.prepend("<span class='hitarea'></span>");
+                        $thisKids.prepend("<span class='"+CLASSES.hitarea+"'></span>");
+                        //Initialize the view of tree
                         $thisKids.children('ul').toggle(options.initialShow);
                         if (options.initialShow) {
-                            $thisKids.addClass(options.cssClassOpen);
+                            $thisKids.addClass(CLASSES.collapsable);
                         } else {
-                            $thisKids.addClass(options.cssClassClose);
+                            $thisKids.addClass(CLASSES.expandable);
                         }
-                        $thisKids.children("span.hitarea").click(function () { showTreeviewElm(objKids, options); });
+                        //Open element if Id Match
+                        if(findChildrenId($thisKids.children('ul'), options)) {
+                            $thisKids.children('ul').toggle(true);
+                            $thisKids.addClass(CLASSES.collapsable);
+                        }
+                        
+                        $thisKids.children("span."+CLASSES.hitarea).click(function () { showTreeviewElm(objKids, options); });
                     }
                 });
             }
@@ -62,7 +79,7 @@
             ft.construct = function (settings) {
                 
                 return this.each(function () {
-                    //Déclaration des variables
+                    //D�claration des variables
                     var $this = $(this), obj = this;
                     var options =  $.extend(true, ft.options, ft.defaults, settings);
                     $this.addClass(options.cssClass);
@@ -72,6 +89,15 @@
             
         }()
     });
+    
+    // Variable name CSS class
+    var CLASSES = ({
+        expandable: "expandable",
+        collapsable: "collapsable",
+        last: "last",
+        hitarea: "hitarea"
+    });
+    
     // make shortcut
 	var ft = $.fastreeview;
 
