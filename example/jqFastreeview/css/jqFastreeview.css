@@ -8,6 +8,13 @@ body {
 	font-size: 1.4em; /* equiv 14px */
 	line-height: 1.5; /* adapt to your design */
 }
+code {
+    background-color: #B0C4DE;
+    display: block;
+    font-size: 0.7em;
+    padding: 5px;
+    border-left:1px solid #87C442;
+}
 
 
 .fastreeview, .fastreeview ul{
@@ -40,16 +47,16 @@ body {
 .fastreeview li.collapsable.last {
    background:none repeat-y scroll 0 0 transparent;
 }
-.fastreeview li.expandable span.hitarea{
-    background-image:url("images/expand.png");
-}
-.fastreeview li.expandable.last span.hitarea {
-    background-image:url("images/expand-last.png");
-}
-.fastreeview li.collapsable span.hitarea{
+.fastreeview li.collapsable > span.hitarea{
     background-image:url("images/collapse.png");
 }
-.fastreeview li.collapsable.last span.hitarea{
+.fastreeview li.collapsable.last > span.hitarea{
     background-image:url("images/collapse-last.png");
+}
+.fastreeview li.expandable > span.hitarea{
+    background-image:url("images/expand.png");
+}
+.fastreeview li.expandable.last > span.hitarea {
+    background-image:url("images/expand-last.png");
 }
 
