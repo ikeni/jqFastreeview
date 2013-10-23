@@ -1,0 +1,14 @@
+[
+    {
+        "value" : "menu 1.1",
+        "hasChildren" : false
+    },
+    {
+        "value" : "menu 1.2",
+        "hasChildren" : true
+    },
+    {
+        "value" : "menu 1.3",
+        "hasChildren" : false
+    }
+]

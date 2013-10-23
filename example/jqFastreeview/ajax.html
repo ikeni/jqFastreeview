@@ -7,11 +7,17 @@
         <link rel="stylesheet" type="text/css" href="css/jqFastreeview.css"/>
 		<script type="text/javascript">
 		$().ready(function() { 
-           $('#treeview').fastreeview({
-                debug:true,
+            $('#treeviewhtml').fastreeview({
                 initialShow:true,
                 ajaxUrl:"ajaxData.html",
-                ajaxSuccess:function(){alert('red');}
+                ajaxDataType : "html",
+                ajaxSuccess:function(){alert('Add a branch');}
+            });
+            $('#treeviewjson').fastreeview({
+                initialShow:true,
+                ajaxUrl:"ajaxData.json",
+                ajaxDataType : "json",
+                ajaxSuccess:function(){alert('Add a branch');}
            });
         });
 		</script>
@@ -19,10 +25,10 @@
 	</head>
 	
 	<body>
-        <h1>Treeview with ul / li</h1>
+        <h1>Treeview with ul / li with AJAX (HTML)</h1>
         <div style="display: inline-block; width: 33%; vertical-align: top;">
             <p>Rendu</p>
-            <ul id="treeview">
+            <ul id="treeviewhtml">
                 <li>
                     <a href="http://www.google.fr" target="_blank">Menu 1</a>
                     <ul>
@@ -39,7 +45,7 @@
         <div style="display: inline-block; width: 33%; vertical-align: top;">
             <p>Code HTML</p>
             <code>
-                &lt;ul id=&quot;treeview&quot;&gt;<br />
+                &lt;ul id=&quot;treeviewhtml&quot;&gt;<br />
                     &nbsp;&lt;li&gt;<br />
                         &nbsp;&nbsp;&lt;a href=&quot;http://www.google.fr&quot; target=&quot;_blank&quot;&gt;Menu 1&lt;/a&gt;<br />
                         &nbsp;&nbsp;&lt;ul&gt;<br />
@@ -63,8 +69,65 @@
         <div style="display: inline-block; width: 33%; vertical-align: top;">
             <p>Code Javascript</p>
             <code>
-                $('#treeview').fastreeview({
-                    initialShow:true
+                $('#treeviewhtml').fastreeview({<br/>
+                    &nbsp;initialShow:true,<br/>
+                    &nbsp;ajaxUrl:"ajaxData.html",<br/>
+                    &nbsp;ajaxDataType : "html",<br/>
+                    &nbsp;ajaxSuccess:function(){alert('Add a branch');}<br/>
+                });
+            </code>
+        
+        </div>
+        
+        <h1>Treeview with ul / li with AJAX (JSON)</h1>
+        <div style="display: inline-block; width: 33%; vertical-align: top;">
+            <p>Rendu</p>
+            <ul id="treeviewjson">
+                <li>
+                    <a href="http://www.google.fr" target="_blank">Menu 1</a>
+                    <ul>
+                    </ul>
+                </li>
+                <li><a>Menu 2</a></li>
+                <li><a>Menu 3</a></li>
+                <li><a>Menu 4</a>
+                    <ul>
+                    </ul>
+                </li>                
+            </ul>
+        </div>
+        <div style="display: inline-block; width: 33%; vertical-align: top;">
+            <p>Code HTML</p>
+            <code>
+                &lt;ul id=&quot;treeviewjson&quot;&gt;<br />
+                    &nbsp;&lt;li&gt;<br />
+                        &nbsp;&nbsp;&lt;a href=&quot;http://www.google.fr&quot; target=&quot;_blank&quot;&gt;Menu 1&lt;/a&gt;<br />
+                        &nbsp;&nbsp;&lt;ul&gt;<br />
+                            &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href=&quot;http://www.google.fr&quot; target=&quot;_blank&quot;&gt;Sous menu 1.1&lt;/a&gt;&lt;/li&gt;<br />
+                            &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a&gt;Sous menu 1.2&lt;/a&gt;&lt;/li&gt;<br />
+                            &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a&gt;Sous menu 1.3&lt;/a&gt;&lt;/li&gt;<br />
+                        &nbsp;&nbsp;&lt;/ul&gt;<br />
+                    &nbsp;&lt;/li&gt;<br />
+                    &nbsp;&lt;li&gt;&lt;a&gt;Menu 2&lt;/a&gt;&lt;/li&gt;<br />
+                    &nbsp;&lt;li&gt;&lt;a&gt;Menu 3&lt;/a&gt;&lt;/li&gt;<br />
+                    &nbsp;&lt;li&gt;&lt;a&gt;Menu 4&lt;/a&gt;<br />
+                        &nbsp;&nbsp;&lt;ul&gt;<br />
+                            &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a&gt;Sous menu 4.1&lt;/a&gt;&lt;/li&gt;<br />
+                            &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a&gt;Sous menu 4.2&lt;/a&gt;&lt;/li&gt;<br />
+                            &nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a&gt;Sous menu 4.3&lt;/a&gt;&lt;/li&gt;<br />
+                        &nbsp;&nbsp;&lt;/ul&gt;<br />
+                    &nbsp;&lt;/li&gt;<br />
+                &lt;/ul&gt;
+            </code>
+        </div>
+        <div style="display: inline-block; width: 33%; vertical-align: top;">
+            <p>Code Javascript</p>
+            <code>
+                $('#treeviewjson').fastreeview({<br/>
+                    &nbsp;initialShow:true,<br/>
+                    &nbsp;ajaxUrl:"ajaxData.json",<br/>
+                    &nbsp;ajaxDataType : "json",<br/>
+                    &nbsp;ajaxSuccess:function(){alert('Add a branch');}<br/>
                 });
             </code>
         

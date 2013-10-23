@@ -9,15 +9,16 @@
     $.extend({
         fastreeview : new function (options) {
             var ft = this;
-            ft.version = "0.1";
+            ft.version = "1.0";
             ft.defaults = {
                 debug : false,
                 cssClass : "fastreeview",
                 initialShow : false,
                 openId: [],
                 ajaxUrl: "",
-                ajaxSuccess: "",
-                ajaxError: ""
+                ajaxDataType: "",
+                ajaxSuccess: function(){},
+                ajaxError: function(){}
             };
             ft.options = {};
             
@@ -32,11 +33,28 @@
                 if (options.ajaxUrl !== "" && $this.children('ul').children('li').length === 0) {
                     $.ajax({
                         url : options.ajaxUrl,
-                        dataType : "html",
+                        dataType : options.ajaxDataType,
                         success : function (data, response, xhr) {
-                            $this.children('ul').html(data);
-                            $this.trigger("updateTreeview");
-                            options.ajaxSuccess();
+                            if(options.ajaxDataType === "html") {
+                                $this.children('ul').html(data);
+                                $this.trigger("updateTreeview");
+                                options.ajaxSuccess();
+                            } else if(options.ajaxDataType === "json") {
+                                var content ="";
+                                for (var x = 0; x < data.length; x++) {
+                                    content += "<li>";
+                                    content += data[x].value;
+                                    if(data[x].hasChildren) {
+                                        content += "<ul></ul>";
+                                    }
+                                    content += "</li>";
+                                }
+                                $this.children('ul').html(content);
+                                $this.trigger("updateTreeview");
+                                options.ajaxSuccess();
+                            } else {
+                                options.ajaxSuccess();
+                            }
                         },
                         error : function (data, response, xhr) {
                             options.ajaxError();
